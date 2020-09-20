@@ -58,7 +58,7 @@
                                             <td style="width:15%">{{$dp->penulis}}</td>
                                             <td style="width:18%">{{$dp->updated_at}}</td>
                                             <td style="width:12%">
-                                                <a href="artikel/{{$dp->url}}" target="_blank" data-toggle="tooltip" data-placement="top" title="Lihat Berita" class="btn btn-sm btn-dark"><i class="ti-eye"></i></a>
+                                                <a href="berita/{{$dp->url}}" target="_blank" data-toggle="tooltip" data-placement="top" title="Lihat Berita" class="btn btn-sm btn-dark"><i class="ti-eye"></i></a>
                                                 <span data-toggle="modal" data-target="#modal{{$dp->id}}">
                                                  <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Berita" ><i class="ti-pencil-alt"></i></button> </span>
                                                  <span data-toggle="modal" data-target="#hapus{{$dp->id}}"><button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus Berita"><i class="ti-trash"></i></button></span></td>
@@ -93,7 +93,7 @@
 
                             <!-- This container will become the editable. -->
             <form method="POST" action="/update-berita/{{$dpm->id}}" enctype="multipart/form-data">
-                 @method('PUT')
+                 @method('POST')
                     @csrf
 
                   <label for="judul">Judul Berita</label>
@@ -104,6 +104,25 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                <label for="sub_judul">Sub Judul </label>
+
+                    <input id="sub_judul" type="text" name="sub_judul" class="form-control @error('sub_judul') is-invalid @enderror" value="{{$dpm->sub_judul}}">
+
+                    @error('sub_judul')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+         <div class="form-group">
+                    <label for="image">Ganti Gambar Header</label>
+                    <input id="image" type="file" name="image" class="form-control-file @error('image') is-invalid @enderror">
+
+                    @error('image')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                </div>
+                <div class="form-group">
+                <img src="{{asset('/images/'.$dpm->image)}}" class="img-fluid" width="150px">
+                    </div>
 
                   </br>
                     <textarea id="summernote{{$dpm->id}}" type="text" name="isi" class="form-control @error('isi') is-invalid @enderror">{{$dpm->isi}}</textarea>

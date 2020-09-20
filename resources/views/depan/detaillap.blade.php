@@ -4,120 +4,62 @@
 
 <div class="container">
 <h1 class="section-title wow fadeInUpQuick animated" style="visibility: visible;">
-Core Features
+Program {{$reports->sektor}}
 </h1>
-<p class="section-subcontent">At vero eos et accusamus et iusto odio dignissimos ducimus qui <br> blanditiis praesentium</p>
+<p class="section-subcontent"><b>Sub Sektor {{$reports->sub_sektor}}</b></p>
 <div class="row">
 
 <div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUpQuick animated" data-wow-delay=".2s" data-animation="fadeIn" data-animation-delay="01" style="visibility: visible;-webkit-animation-delay: .2s; -moz-animation-delay: .2s; animation-delay: .2s;">
 <div class="featured-box feature-s">
-<div class="featured-icon">
-<i class="icon-present">
+<div class="featured-icon" style="height: 53px">
+<i class="icon-briefcase">
 </i>
 </div>
 <div class="featured-content">
 <h4>
-Tons of shortcodes
+Detail Laporan
 </h4>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua.
+<table class="table">
+	<tr><th>Nama Perusahaan</th><th>: {{$reports->perusahaannya->nama_perusahaan}} </th></tr>
+	<tr><th>Tanggal</th><th>: {{$reports->tanggal}} </th></tr>
+	<tr><th>Kontribusi </th><th>: {{$reports->kontribusi}} </th></tr>
+	<tr><th>Jumlah Kontribusi	 </th><th>: {{$reports->jumlah}} </th></tr>
+	<tr><th>Penerima </th><th>: {{$reports->tujuan}} </th></tr>
+	<tr><th>Lokasi </th><th>: {{$reports->lokasi}} </th></tr>
+	<tr><th>Keterangan </th><th>: {{$reports->keterangan}} </th></tr>
+</table>
 </p>
 </div>
 </div>
 </div>
 
-
-<div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUpQuick animated" data-wow-delay=".4s" data-animation="fadeIn" data-animation-delay="01" style="visibility: visible;-webkit-animation-delay: .4s; -moz-animation-delay: .4s; animation-delay: .4s;">
+<div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUpQuick animated" data-wow-delay=".2s" data-animation="fadeIn" data-animation-delay="01" style="visibility: visible;-webkit-animation-delay: .2s; -moz-animation-delay: .2s; animation-delay: .2s;">
 <div class="featured-box feature-s">
-<div class="featured-icon">
-<i class="icon-rocket">
+<div class="featured-icon" style="height: 53px">
+<i class="icon-picture">
 </i>
 </div>
 <div class="featured-content">
 <h4>
-Endless posibilites
+Gallery
 </h4>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua.
+		@foreach ($reports->galleries as $gallery)
+		<a href="{{asset('/images/'.$gallery->url)}}" data-rel="lightcase:myCollection"><img src="{{asset('/images/'.$gallery->url)}}" width="100px"></a>
+		@endforeach
 </p>
 </div>
 </div>
 </div>
 
 
-<div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUpQuick animated" data-wow-delay=".6s" data-animation="fadeIn" data-animation-delay="01" style="visibility: visible;-webkit-animation-delay: .6s; -moz-animation-delay: .6s; animation-delay: .6s;">
-<div class="featured-box feature-s">
-<div class="featured-icon">
-<i class="icon-pencil">
-</i>
-</div>
-<div class="featured-content">
-<h4>
-24/7 Support
-</h4>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua.
-</p>
-</div>
-</div>
-</div>
 
 
-<div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUpQuick animated" data-wow-delay=".8s" data-animation="fadeIn" data-animation-delay="01" style="visibility: visible;-webkit-animation-delay: .8s; -moz-animation-delay: .8s; animation-delay: .8s;">
-<div class="featured-box feature-s">
-<div class="featured-icon">
-<i class="icon-diamond icon-large icon-effect">
-</i>
-</div>
-<div class="featured-content">
-<h4>
-Great Ideas
-</h4>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua.
-</p>
-</div>
-</div>
-</div>
-
-
-<div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUpQuick animated" data-wow-delay="1s" data-animation="fadeIn" data-animation-delay="01" style="visibility: visible;-webkit-animation-delay: 1s; -moz-animation-delay: 1s; animation-delay: 1s;">
-<div class="featured-box feature-s">
-<div class="featured-icon">
-<i class="icon-settings">
-</i>
-</div>
-<div class="featured-content">
-<h4>
-Perfect Coding
-</h4>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua.
-</p>
-</div>
-</div>
-</div>
-
-
-<div class="col-lg-6 col-sm-6 col-xs-12 wow fadeInUpQuick animated" data-wow-delay="1.2s" data-animation="fadeIn" data-animation-delay="01" style="visibility: visible;-webkit-animation-delay: 1.2s; -moz-animation-delay: 1.2s; animation-delay: 1.2s;">
-<div class="featured-box feature-s">
-<div class="featured-icon">
-<i class="icon-star">
-</i>
-</div>
-<div class="featured-content">
- <h4>
-Unique Design
-</h4>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua.
-</p>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$('a[data-rel^=lightcase]').lightcase();
+	});
+</script>
 </section>
 @endsection

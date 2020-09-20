@@ -1,23 +1,15 @@
 @extends('layouts.depan')
 @section('content')
 <!-- BOF Breadcrumb -->
-             <div class="row">
-                <div class="col">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="ti-home"></i> Home</a></li>
-                        
-                        <li class="breadcrumb-item active">Pengajuan Permohonan</li>
-                    </ol>
-                </div>
-            </div>
+<section class="section">
+    <div class="container">
+<h1 class="section-title wow fadeInUpQuick">
+Pengajuan Permohonan
+</h1>
+<p class="section-subcontent" style="text-transform: capitalize;"></b></p>
             <!-- EOF Breadcrumb -->
              <!-- BOF MAIN-BODY -->
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Ajukan Permohonan</h1>
-                </div>
-            </div>
-
+            
             <div class="row">
                 <div class="col-md-6">
                     <form method="POST" action="/add-pengajuan" enctype="multipart/form-data">
@@ -92,7 +84,6 @@
                     
                     <label for="tahun">Tahun</label>
                     <select class="form-control" name="tahun">
-                        <option value="2019">2019</option>
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
@@ -125,6 +116,6 @@
     
 
 </script>
-
+</div>
 
 @endsection

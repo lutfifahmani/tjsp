@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', 'FrontController@home');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -37,9 +39,19 @@ Route::delete('hapus-perusahaan/{id}', 'PerusahaanController@destroy');
 
 Route::get('/tambah-laporan', 'ReportController@create');
 Route::get('/list-laporan', 'ReportController@index');
+
 Route::get('/laporan', 'FrontController@indexdepan');
 Route::get('/perusahaan', 'FrontController@perusahaandepan');
+Route::get('/galeri', 'FrontController@galeridepan');
 Route::get('/perusahaan/{id}', 'FrontController@perusahaansatu');
+Route::get('/laporan/{id}', 'FrontController@laporansatu');
+Route::get('/berita/{slug}', 'FrontController@beritasatu');
+Route::get('/csr/{sektor}/{sub_sektor}', 'FrontController@laporandepan');
+Route::get('/berita', 'FrontController@beritadepan');
+Route::get('/profil', 'FrontController@profil');
+
+
+
 Route::post('/add-laporan', 'ReportController@store');
 Route::put('update-laporan/{id}', 'ReportController@update');
 Route::delete('hapus-laporan/{id}', 'ReportController@destroy');
@@ -47,9 +59,8 @@ Route::delete('hapus-laporan/{id}', 'ReportController@destroy');
 
 Route::get('/tambah-berita', 'BeritaController@create')->name('tambah-berita');
 Route::get('/list-berita', 'BeritaController@index');
-Route::get('/artikel/{slug}', 'BeritaController@show');
 Route::post('/add-berita', 'BeritaController@store');
-Route::put('update-berita/{id}', 'BeritaController@update');
+Route::post('update-berita/{id}', 'BeritaController@update');
 Route::delete('hapus-berita/{id}', 'BeritaController@destroy');
 Route::post('ckeditor/upload', 'BeritaController@upload')->name('berita.upload');
 

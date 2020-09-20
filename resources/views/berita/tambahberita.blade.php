@@ -19,7 +19,7 @@
 
     <!-- The toolbar will be rendered in this container. -->
     
-<form method="POST" action="/add-berita">
+<form method="POST" action="/add-berita" enctype="multipart/form-data">
                  @method('POST')
                     @csrf
     <!-- This container will become the editable. -->
@@ -30,7 +30,22 @@
                     @error('judul')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                     <label for="sub_judul">Sub Judul </label>
 
+                    <input id="sub_judul" type="text" name="sub_judul" class="form-control @error('sub_judul') is-invalid @enderror">
+
+                    @error('sub_judul')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+         <div class="form-group">
+                    <label for="image">Gambar Header</label>
+                    <input id="image" type="file" name="image" class="form-control-file @error('image') is-invalid @enderror">
+
+                    @error('image')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                    
           </br>
             <textarea name="isi" id="summernote">
                 <p>Isi Berita Disini . . .</p>

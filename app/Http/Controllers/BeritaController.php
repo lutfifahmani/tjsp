@@ -57,9 +57,12 @@ class BeritaController extends Controller
         //
 
       $request->validate([
-            'judul' => 'required|unique:posts,judul'
+            'judul' => 'required|unique:posts,judul',
+            'image' => 'required|file|max:512'
 
         ]);
+
+      $path = $request->file('image')->store('blog');
     
        $isi = $request->isi;
  
@@ -100,6 +103,11 @@ class BeritaController extends Controller
        $summernote = new Berita;
  
        $summernote->judul = $request->judul;
+
+       $summernote->image = $path;
+
+
+        $summernote->sub_judul= $request->sub_judul;
 
        $summernote->url = Str::slug($request->judul, '-');
  
@@ -231,6 +239,18 @@ class BeritaController extends Controller
     {
         //
 
+      $request->validate([
+            'judul' => 'required',
+
+        ]);
+
+      if ($request->hasFile('image')) {
+        
+
+      $path = $request->file('image')->store('blog');
+
+      # code...
+      }
         $isi = $request->isi;
  
        $dom = new \DomDocument();
@@ -270,8 +290,13 @@ class BeritaController extends Controller
         $update = Berita::find($id);
 
         $update->judul= $request->judul;
+         $update->sub_judul= $request->sub_judul;
 
         $update->isi= $isi;
+
+        if ($request->hasFile('image')) {
+           $update->image= $path;
+        }
 
         $update->url= Str::slug($request->judul, '-');
 

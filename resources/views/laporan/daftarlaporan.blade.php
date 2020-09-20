@@ -99,7 +99,7 @@
                             <!-- FORM -->
 
                             <!-- This container will become the editable. -->
-            <form method="POST" action="/update-laporan/{{$dpm->id}}">
+            <form method="POST" action="/update-laporan/{{$dpm->id}}" enctype="multipart/form-data">
                  @method('PUT')
                     @csrf
 

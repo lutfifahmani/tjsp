@@ -55,7 +55,7 @@ Kontribusi Perusahaan
 		<td>{{$rep->sektor}}</td>
 		<td>{{$rep->sub_sektor}} Sektor</td>
 		<td>{{$rep->kontribusi}}</td>
-		<td>{{$rep->id}}</td></tr>
+		<td><a href="{{url('/laporan/'.$rep->id)}}">Detail</a></td></tr>
 	@endforeach
 </table>
 </p>

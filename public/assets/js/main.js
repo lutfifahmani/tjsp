@@ -46,6 +46,7 @@ wow.init();
 
 //Owl Carousel
 $('#clients-scroller').owlCarousel({
+  autoPlay: 5000,
     items:4,
     itemsTablet:3,
     margin:90,
@@ -56,7 +57,7 @@ $('#clients-scroller').owlCarousel({
     itemsTablet: [768,3],
     itemsTablet: [767,2],
     itemsTabletSmall: [480,2],
-    itemsMobile : [479,1],
+    itemsMobile : [479,1]
 });
 
 //Color Client

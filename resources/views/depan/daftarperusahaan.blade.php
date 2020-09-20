@@ -1,15 +1,12 @@
 @extends('layouts.depan')
 @section('content')
 
-            <!-- BOF Breadcrumb -->
-            <div class="row">
-                <div class="col">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href=""><i class="ti-home"></i> Home</a></li>
-                        <li class="breadcrumb-item active">Daftar Perusahaan</li>
-                    </ol>
-                </div>
-            </div>
+         <section class="section">
+    <div class="container">
+    <h1 class="section-title wow fadeInUpQuick">
+    Daftar Perusahaan
+    </h1>
+    <p class="section-subcontent" style="text-transform: capitalize;"><b></b></p>
 
             @if ($status = Session::get('status'))
             <!-- EOF Breadcrumb -->
@@ -62,7 +59,7 @@
             </div>
             <!-- EOF Basic Datatable -->
             <!-- EOF MAIN-BODY -->
-
+</div>
  
 <script type="text/javascript">
     $(document).ready( function () {
