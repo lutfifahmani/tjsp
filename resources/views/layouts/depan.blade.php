@@ -47,6 +47,34 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
     </script>
     <![endif]-->
+
+ <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfABetKI4MFj5kvDBkHEXP9jcW-GoAK3I&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+<style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+
+       #floating-panel {
+       
+          top: 10px;
+          left: 25%;
+          z-index: 5;
+          background-color: #fff;
+          padding: 5px;
+          border: 1px solid #999;
+          text-align: center;
+          font-family: "Roboto", "sans-serif";
+          line-height: 30px;
+          padding-left: 10px;
+        }
+    </style>
+
   </head>
   <body>
 
@@ -193,9 +221,6 @@
     <script src="{{url('assets/js/jquery.vide.js')}}"></script>
      <!-- All JS plugin Triggers -->
     <script src="{{url('assets/js/main.js')}}"></script>
-
-
-
 
     
   </body>
