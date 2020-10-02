@@ -33,7 +33,7 @@ Route::get('/list-berita', 'BeritaController@index')->name('list-berita');
 Route::get('/tambah-perusahaan', 'PerusahaanController@create')->name('tambah-perusahaan');
 Route::get('/list-perusahaan', 'PerusahaanController@index');
 Route::post('/add-perusahaan', 'PerusahaanController@store');
-Route::put('update-perusahaan/{id}', 'PerusahaanController@update');
+Route::post('update-perusahaan/{id}', 'PerusahaanController@update');
 Route::delete('hapus-perusahaan/{id}', 'PerusahaanController@destroy');
 
 
@@ -46,14 +46,14 @@ Route::get('/galeri', 'FrontController@galeridepan');
 Route::get('/perusahaan/{id}', 'FrontController@perusahaansatu');
 Route::get('/laporan/{id}', 'FrontController@laporansatu');
 Route::get('/berita/{slug}', 'FrontController@beritasatu');
-Route::get('/csr/{sektor}/{sub_sektor}', 'FrontController@laporandepan');
+Route::get('/csr/{program}/{pemohon}', 'FrontController@laporandepan');
 Route::get('/berita', 'FrontController@beritadepan');
 Route::get('/profil', 'FrontController@profil');
 
 
 
 Route::post('/add-laporan', 'ReportController@store');
-Route::put('update-laporan/{id}', 'ReportController@update');
+Route::post('update-laporan/{id}', 'ReportController@update');
 Route::delete('hapus-laporan/{id}', 'ReportController@destroy');
 
 

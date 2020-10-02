@@ -17,6 +17,7 @@ class CreateCompaniesTable extends Migration
             $table->id();
             $table->string('avatar');
             $table->string('nama_perusahaan');
+            $table->string('npwp')->nullable();
             $table->string('alamat_perusahaan');
             $table->string('email_perusahaan');
             $table->string('kontak_perusahaan');

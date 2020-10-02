@@ -47,13 +47,11 @@ Kontribusi Perusahaan
 <table class="table">
 	<tr><th>Tanggal</th>
 		<th>Sektor</th>
-		<th>Sub Sektor</th>
 		<th>Kontribusi</th>
 		<th>Detail</th></tr>
 	@foreach ($perusahaan->reports as $rep)
-	<tr><td>{{$rep->tanggal}}</td>
+	<tr><td>{{$rep->tanggal->format('d-m-Y')}}</td>
 		<td>{{$rep->sektor}}</td>
-		<td>{{$rep->sub_sektor}} Sektor</td>
 		<td>{{$rep->kontribusi}}</td>
 		<td><a href="{{url('/laporan/'.$rep->id)}}">Detail</a></td></tr>
 	@endforeach

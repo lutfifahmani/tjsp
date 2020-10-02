@@ -46,6 +46,7 @@
                                             <th>Logo Perusahan</th>
                                             <th>Nama Perusahan</th>
                                             <th>Alamat Perusahaan</th>
+                                            <th>NPWP</th>
                                             <th>Email</th>
                                             <th>Kontak</th>
                                             <th>Keterangan</th>
@@ -60,7 +61,8 @@
                                             <td><img src="{{ asset('images/'.$dp->avatar) }}" width="100px"></td>
                                             <td>{{$dp->nama_perusahaan}}</td>
                                             <td>{{$dp->alamat_perusahaan}}</td>
-                                            <td>{{$dp->email_perusahaan}}</td>
+                                            <td>{{$dp->npwp}}</td>
+                                            <td>{{$dp->email_perusahaan}}</td>          
                                             <td>{{$dp->kontak_perusahaan}}</td>
                                             <td>{{$dp->keterangan}}</td>
                                             <td style="width:12%"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal{{$dp->id}}"><i class="ti ti-pencil-alt"></i></button> <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapus{{$dp->id}}"><i class="ti ti-trash"></i></button></td>
@@ -94,12 +96,12 @@
                             <!-- FORM -->
              <!-- This container will become the editable. -->
             <form method="POST" action="/update-perusahaan/{{$dpm->id}}" enctype="multipart/form-data">
-                 @method('PUT')
+                 @method('POST')
                     @csrf
                     <div class="row">
                         <div class="col">
                         <figure class="figure">
-                          <img src="{{ asset('images/'.$dp->avatar) }}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+                          <img src="{{ asset('images/'.$dpm->avatar) }}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
                         </figure>
                             
                        
@@ -107,7 +109,7 @@
                         <div class="col">
                         <label>Ubah Logo</label>
                          <div class="form-group">
-                        <input id="avatar" type="file" name="avatar" class="form-control-file @error('avatar') is-invalid @enderror">
+                        <input id="{{$dpm->id}}avatar" type="file" name="avatar" class="form-control-file @error('avatar') is-invalid @enderror">
                         @error('avatar')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -119,7 +121,7 @@
 
                   <label for="nama_perusahaan">Nama Perusahaan</label>
 
-                    <input id="nama_perusahaan" type="text" name="nama_perusahaan" class="form-control @error('nama_perusahaan') is-invalid @enderror" value="{{$dpm->nama_perusahaan}}">
+                    <input id="{{$dpm->id}}nama_perusahaan" type="text" name="nama_perusahaan" class="form-control @error('nama_perusahaan') is-invalid @enderror" value="{{$dpm->nama_perusahaan}}">
 
                     @error('nama_perusahaan')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -128,7 +130,7 @@
 
                     <label for="alamat_perusahaan">alamat Perusahaan</label>
 
-                    <input id="alamat_perusahaan" type="text" name="alamat_perusahaan" class="form-control @error('alamat_perusahaan') is-invalid @enderror" value="{{$dpm->alamat_perusahaan}}">
+                    <input id="{{$dpm->id}}alamat_perusahaan" type="text" name="alamat_perusahaan" class="form-control @error('alamat_perusahaan') is-invalid @enderror" value="{{$dpm->alamat_perusahaan}}">
 
                     @error('alamat_perusahaan')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -137,16 +139,25 @@
 
                     <label for="email_perusahaan">email Perusahaan</label>
 
-                    <input id="email_perusahaan" type="text" name="email_perusahaan" class="form-control @error('email_perusahaan') is-invalid @enderror" value="{{$dpm->email_perusahaan}}">
+                    <input id="{{$dpm->id}}email_perusahaan" type="text" name="email_perusahaan" class="form-control @error('email_perusahaan') is-invalid @enderror" value="{{$dpm->email_perusahaan}}">
 
                     @error('email_perusahaan')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
 
+                    <label for="npwp">NPWP</label>
+
+                    <input id="{{$dpm->id}}npwp" type="text" name="npwp" class="form-control @error('npwp') is-invalid @enderror" value="{{$dpm->npwp}}">
+
+                    @error('npwp')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+
                     <label for="kontak_perusahaan">kontak Perusahaan</label>
 
-                    <input id="kontak_perusahaan" type="text" name="kontak_perusahaan" class="form-control @error('kontak_perusahaan') is-invalid @enderror" value="{{$dpm->kontak_perusahaan}}">
+                    <input id="{{$dpm->id}}kontak_perusahaan" type="text" name="kontak_perusahaan" class="form-control @error('kontak_perusahaan') is-invalid @enderror" value="{{$dpm->kontak_perusahaan}}">
 
                     @error('kontak_perusahaan')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -155,7 +166,7 @@
 
                     <label for="keterangan">Keterangan</label>
 
-                    <input id="keterangan" type="text" name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" value="{{$dpm->keterangan}}">
+                    <input id="{{$dpm->id}}keterangan" type="text" name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" value="{{$dpm->keterangan}}">
 
                     @error('keterangan')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -207,5 +218,4 @@
 } );
 </script>
 
-@toastr_render
     @endsection

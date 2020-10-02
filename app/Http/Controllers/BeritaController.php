@@ -6,6 +6,7 @@ use App\Berita;
 use App\Pages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
@@ -22,7 +23,7 @@ class BeritaController extends Controller
     public function index()
     {
          // Tambah Berita
-         $posts = Berita::all();
+         $posts = Berita::orderBy('updated_at','desc')->get();
         return view('berita.listberita',[ 'posts' => $posts]);
 
     }
@@ -114,6 +115,10 @@ class BeritaController extends Controller
        $summernote->isi = $isi;
 
        $summernote->penulis = "Administrator";
+
+       $summernote->slide = $request->slide;
+
+       $summernote->state = $request->state;
  
        $summernote->save();
  
@@ -140,6 +145,7 @@ class BeritaController extends Controller
     {
         //
     
+
        $isi = $request->content;
  
        $dom = new \DomDocument();
@@ -150,10 +156,16 @@ class BeritaController extends Controller
  
        $images = $dom->getElementsByTagName('img');
  
-       foreach($images as $k => $img){
+      foreach($images as $k => $img){
  
  
            $data = $img->getAttribute('src');
+
+           $exists = Storage::disk('local2')->exists($data);
+
+           if (!$exists) {
+            
+           
  
            list($type, $data) = explode(';', $data);
  
@@ -170,21 +182,21 @@ class BeritaController extends Controller
            $img->removeAttribute('src');
  
            $img->setAttribute('src', $image_name);
+
+          }
  
         }
  
  
-       $isi = $dom->saveHTML();
+     $isi = $dom->saveHTML();
  
-       $profil = Pages::find(1);
+      $profil = Pages::find(1);
  
-       $profil->title = $request->title;
+      $profil->title = $request->title;
  
-       $profil->content = $isi;
+      $profil->content = $isi;
  
-       $profil->save();
- 
- 
+      $profil->save();
  
  
    //     $posts = new Berita;
@@ -199,7 +211,7 @@ class BeritaController extends Controller
 
     //    $posts = Berita::all();
 
-        return redirect('ubah-profil')->with('status', 'Profil Berhasil Diperbaharui!');
+       return redirect('ubah-profil')->with('status', 'Profil Berhasil Diperbaharui!');
     }
 
     /**
@@ -265,6 +277,10 @@ class BeritaController extends Controller
  
  
            $data = $img->getAttribute('src');
+
+           $exists = Storage::disk('local2')->exists($data);
+
+           if (!$exists) {
  
            list($type, $data) = explode(';', $data);
  
@@ -281,6 +297,8 @@ class BeritaController extends Controller
            $img->removeAttribute('src');
  
            $img->setAttribute('src', $image_name);
+
+         }
  
         }
  
@@ -299,6 +317,10 @@ class BeritaController extends Controller
         }
 
         $update->url= Str::slug($request->judul, '-');
+
+        $update->slide = $request->slide;
+
+       $update->state = $request->state;
 
         $update->save();
 

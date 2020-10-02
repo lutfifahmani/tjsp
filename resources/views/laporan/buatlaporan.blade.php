@@ -31,30 +31,38 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
-                 <label for="sektor">Sektor</label>
+                <label for="judul">Judul Kegiatan</label>
+                    <input id="judul" type="text" name="judul" class="form-control @error('judul') is-invalid @enderror">
+                    @error('judul')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                 <label for="sektor">Program</label>
                     <select name="sektor" class="form-control">
                         
-                        <option value="Musrenbang">Musrenbang</option>
-                        <option value="Permohonan Masyarakat">Permohonan Masyarakat</option>
-                        <option value="Program Perusahaan">Program Perusahaan</option>
+                        <option value="Ekonomi">Ekonomi</option>
+                        <option value="Sosial Budaya">Sosial Budaya</option>
+                        <option value="Prasarana Wilayah">Prasarana Wilayah</option>
                       
                     </select>
 
-                 <label for="sub_sektor">Sub Sektor</label>
-                 <select name="sub_sektor" class="form-control">
-                    <option value="Sosial Budaya">Sosial Budaya</option>
-                    <option value="Ekonomi">Ekonomi</option>
-                    <option value="Prasarana Wilayah">Prasarana Wilayah</option>
-                </select>
-                </div>
-
-                <div class="col-md-4">
-                    <label for="id_perusahaan">Perusahaan</label>
+                    <label for="id_perusahaan">Perusahaan/Instansi</label>
                     <select name="id_perusahaan" class="form-control">
                         @foreach ($perusahaan as $pr)
                         <option value="{{$pr->id}}">{{$pr->nama_perusahaan}}</option>
                         @endforeach
                     </select>
+
+               <!--  <label for="sub_sektor">Sub Sektor</label>
+                 <select name="sub_sektor" class="form-control">
+                    <option value="Sosial Budaya">Sosial Budaya</option>
+                    <option value="Ekonomi">Ekonomi</option>
+                    <option value="Prasarana Wilayah">Prasarana Wilayah</option>
+                </select> -->
+                </div>
+
+                <div class="col-md-4">
+                    
 
                     <label for="kontribusi">Kontribusi</label>
                     <input id="kontribusi" type="text" name="kontribusi" class="form-control @error('kontribusi') is-invalid @enderror">
@@ -67,20 +75,38 @@
                     @error('jumlah')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                </div>
 
-                <div class="col-md-4">
+                    <label for="nominal">Nominal</label>
+                    <input id="nominal" type="text" name="nominalx" class="form-control @error('nominal') is-invalid @enderror money" autocomplete="off">
+                    @error('nominal')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <input type="hidden" name="nominal" class="form-control @error('nominal') is-invalid @enderror aslinya" autocomplete="off">
+
                     <label for="tujuan">Tujuan atau Penerima</label>
                     <input id="tujuan" type="text" name="tujuan" class="form-control @error('tujuan') is-invalid @enderror">
                     @error('tujuan')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                </div>
+
+                <div class="col-md-4">
+                    
 
                     <label for="lokasi">Lokasi Kegiatan</label>
                     <input id="lokasi" type="text" name="lokasi" class="form-control @error('lokasi') is-invalid @enderror">
                     @error('lokasi')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
+                    <label for="lat">LatLing (untuk map) <a href="https://www.google.com/maps/place/Samarinda+kota" id="linknya" target="_blank">Cari</a></label>
+
+                    <input id="lat" type="text" name="latling" class="form-control @error('lat') is-invalid @enderror" placeholder="xxxx,xxxx">
+                    @error('lat')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
 
                     <label for="file">Dokumentasi</label>
                     <input id="file" type="file" name="gallery[]" class="form-control-file @error('gallery') is-invalid @enderror" multiple="true">
@@ -99,9 +125,9 @@
                 </div>
             </div>
 <script type="text/javascript">
-    $('#showsimple').click(function () {
+    $('#lokasi').change(function () {
             // Display a success toast, with a title
-            toastr.success('Data laporan Telah ditambahkan ..', 'Berhasil !!')
+            $("#linknya").attr("href", "https://www.google.com/maps/place/"+$('#lokasi').val());
         });
 
     

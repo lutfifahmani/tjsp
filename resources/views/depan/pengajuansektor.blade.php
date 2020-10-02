@@ -6,8 +6,8 @@
 <h1 class="section-title wow fadeInUpQuick">
 CSR Program
 </h1>
-<p class="section-subcontent" style="text-transform: capitalize;"><b>Jenis Program : {{$sektor}}<br> 
-Pemohon/Pengajuan : {{$sub_sektor}}</b></p>
+<p class="section-subcontent" style="text-transform: capitalize;"><b>Jenis Program : {{$program}}<br> 
+Asal Pengajuan : {{$pemohon}}</b></p>
             <!-- BOF MAIN-BODY -->
               <!-- BOF Basic Datatable -->
             <div class="row">
@@ -28,12 +28,12 @@ Pemohon/Pengajuan : {{$sub_sektor}}</b></p>
                                     <thead class="thead-light">
                                         <tr>
                                             <th style="width:25%">Judul</th>
-                                            <th>Nama Perusahaan</th>
-                                            <th>Alamat Perusahaan</th>
-                                            <th>Alamat Email</th>
+                                            <th>Diajukan Oleh</th>
+                                            <th>Alamat</th>
+                                            <th>Email</th>
                                             <th>Telepon</th>
                                             <th>Jenis Bantuan</th>
-                                            <th>Jumlah (Unit)</th>
+                                            <th>Jumlah</th>
                                             <th>Nilai Asumsi</th>
                                             <th>Tahun</th>
                                             <th>Keterangan</th>
@@ -53,7 +53,7 @@ Pemohon/Pengajuan : {{$sub_sektor}}</b></p>
                                             <td>{{$dp->no_telepon}}</td>
                                             <td>{{$dp->jenis_bantuan}}</td>
                                             <td>{{$dp->jumlah}}</td>
-                                            <td>{{$dp->nilai_asumsi}}</td>
+                                            <td>@currency($dp->nilai_asumsi)</td>
                                             <td>{{$dp->tahun}}</td>
                                             <td>{{$dp->keterangan}}</td>
                                             

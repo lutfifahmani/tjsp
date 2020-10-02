@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'TJSL Bappeda Samarinda') }}</title>
+    <title>Forum TJSP Kota Samarinda</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

@@ -21,6 +21,8 @@ class CreatePostsTable extends Migration
             $table->string('sub_judul')->nullable();
             $table->text('isi');
             $table->string('penulis');
+            $table->string('slide')->nullable();
+            $table->string('state')->nullable();
             $table->timestamps();
         });
     }

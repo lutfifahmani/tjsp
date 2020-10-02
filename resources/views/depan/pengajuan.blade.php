@@ -9,6 +9,15 @@ Pengajuan Permohonan
 <p class="section-subcontent" style="text-transform: capitalize;"></b></p>
             <!-- EOF Breadcrumb -->
              <!-- BOF MAIN-BODY -->
+             @if ($status = Session::get('status'))
+            <!-- EOF Breadcrumb -->
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{$status}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            @endif
             
             <div class="row">
                 <div class="col-md-6">
@@ -77,10 +86,12 @@ Pengajuan Permohonan
                     @enderror
                     
                     <label for="nilai_asumsi">Nilai Asumsi</label>
-                    <input type="number" name="nilai_asumsi"  class="form-control @error('nilai_asumsi') is-invalid @enderror">
+                    <input type="text" name="nilai_asumsi"  class="form-control @error('nilai_asumsi') is-invalid @enderror money" autocomplete="off">
                     @error('nilai_asumsi')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
+                     <input type="hidden" name="nilai_asumsi2"  class="form-control @error('nilai_asumsi') is-invalid @enderror aslinya">
                     
                     <label for="tahun">Tahun</label>
                     <select class="form-control" name="tahun">

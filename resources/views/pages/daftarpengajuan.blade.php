@@ -65,7 +65,7 @@
                                             <td>{{$dp->no_telepon}}</td>
                                             <td>{{$dp->jenis_bantuan}}</td>
                                             <td>{{$dp->jumlah}}</td>
-                                            <td>{{$dp->nilai_asumsi}}</td>
+                                            <td>@currency($dp->nilai_asumsi)</td>
                                             <td>{{$dp->tahun}}</td>
                                             <td>{{$dp->keterangan}}</td>
                                             <td style="width:5%"><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapus{{$dp->id}}"><i class="ti ti-trash"></i></button></td>

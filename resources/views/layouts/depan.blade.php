@@ -15,6 +15,7 @@
     
     <!-- Main Style -->
     <link rel="stylesheet" type="text/css" href="{{url('assets/css/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('assets/css/lutfi.css')}}">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="{{url('assets/css/responsive.css')}}">
     <!--Fonts-->
@@ -40,6 +41,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{url('lightcase/css/lightcase.css')}}">
     <script type="text/javascript" src="{{url('lightcase/js/lightcase.js')}}"></script>
+    <script src="{{ asset('js/jQuery.Mask.js') }}" defer></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
@@ -73,6 +75,8 @@
           line-height: 30px;
           padding-left: 10px;
         }
+
+        
     </style>
 
   </head>
@@ -80,14 +84,14 @@
 
     <header id="header-wrap">
 
-<div class="header-navbar" style="border-bottom: 1px dashed green">
+<div class="header-navbar" style="border-bottom: 5px solid #ca2727">
 <div class="navbar-area">
 <div class="container">
 <div class="row">
 <div class="col-lg-12">
 <nav class="navbar navbar-expand-lg">
 <a class="navbar-brand" href="{{url('/')}}">
-    <img src="{{url('/assets/tjsp/logo.png')}}" class="img-fluid" style="max-height: 60px" alt="">
+    <img src="{{url('/images/logo/logodepan.png')}}" class="img-fluid" style="max-height: 60px" alt="">
 </a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="toggler-icon"></span>
@@ -102,20 +106,27 @@
 <li class="nav-item">
 <a href="#">CSR Program</a>
 <ul class="sub-menu">
-<li><a href="#">Musrenbang</a></li>
-<li style="padding-left: 10px"><a href="{{url('/csr/musrenbang/ekonomi')}}"> - Ekonomi</a></li>
-<li style="padding-left: 10px"><a href="{{url('/csr/musrenbang/sosial-budaya')}}"> - Sosial Budaya</a></li>
-<li style="padding-left: 10px"><a href="{{url('/csr/musrenbang/prasarana-wilayah')}}"> - Prasarana Wilayah</a></li>
-
-<li><a href="#">Permohonan Masyarakat</a></li>
-<li style="padding-left: 10px"><a href="{{url('/csr/permohonan-masyarakat/ekonomi')}}"> - Ekonomi</a></li>
-<li style="padding-left: 10px"><a href="{{url('/csr/permohonan-masyarakat/sosial-budaya')}}"> - Sosial Budaya</a></li>
-<li style="padding-left: 10px"><a href="{{url('/csr/permohonan-masyarakat/prasarana-wilayah')}}"> - Prasarana Wilayah</a></li>
-
-<li><a href="#">Program Perusahaan</a></li>
-<li style="padding-left: 10px"><a href="{{url('/csr/program-perusahaan/ekonomi')}}"> - Ekonomi</a></li>
-<li style="padding-left: 10px"><a href="{{url('/csr/program-perusahaan/sosial-budaya')}}"> - Sosial Budaya</a></li>
-<li style="padding-left: 10px"><a href="{{url('/csr/program-perusahaan/prasarana-wilayah')}}"> - Prasarana Wilayah</a></li>
+<li class="nav-item-level1"><a href="#">Ekonomi</a>
+<ul class="sub-menu-level1">
+      <li><a href="{{url('/csr/ekonomi/musrenbang')}}"> - Musrenbang</a></li>
+      <li><a href="{{url('/csr/ekonomi/permohonan-masyarakat')}}"> - Permohonan Masyarakat</a></li>
+      <li><a href="{{url('/csr/ekonomi/program-perusahaan')}}"> - Program Perusahaan</a></li>
+</ul>
+</li>
+<li class="nav-item-level1"><a href="#">Sosial Budaya</a>
+<ul class="sub-menu-level1">
+      <li><a href="{{url('/csr/sosial-budaya/musrenbang')}}"> - Musrenbang</a></li>
+      <li><a href="{{url('/csr/sosial-budaya/permohonan-masyarakat')}}"> - Permohonan Masyarakat</a></li>
+      <li><a href="{{url('/csr/sosial-budaya/program-perusahaan')}}"> - Program Perusahaan</a></li>
+</ul>
+</li>
+<li class="nav-item-level1"><a href="#">Prasarana Wilayah</a>
+<ul class="sub-menu-level1">
+      <li><a href="{{url('/csr/prasarana-wilayah/musrenbang')}}"> - Musrenbang</a></li>
+      <li><a href="{{url('/csr/prasarana-wilayah/permohonan-masyarakat')}}"> - Permohonan Masyarakat</a></li>
+      <li><a href="{{url('/csr/prasarana-wilayah/program-perusahaan')}}"> - Program Perusahaan</a></li>
+</ul>
+</li>
 
 </ul> 
 </li>
@@ -163,7 +174,7 @@
           <!-- BOF MAIN -->
         </div>
     <!-- Footer Section -->
-    <footer style="background-color: #920b12e6">
+    <footer style="background-image: url({{asset('images/backgroundnya.jpg')}});height: 200px;background-size: cover;">
       <!-- Container Starts -->
       <div class="container" style="height: 50px">
         <!-- Row Starts -->
@@ -173,12 +184,12 @@
       </div><!-- Container Ends -->
       
       <!-- Copyright -->
-      <div id="copyright" style="background-color: #28a745;">
+      <div>
         <div class="container">
           <div class="row">
             <div class="col-md-6 col-sm-6">
               <p class="copyright-text" style="color: white">
-                ©  2020 Forum TJSP Kota Samarinda. Support by <a href="#" style="color:green">Karkit DEV</a>
+                ©  2020 Forum TJSP Kota Samarinda. Support by <a href="https://instagram.com/lutfifanz" target="_blank" style="color:green">Karkit DEV</a>
               </p>
             </div>
           </div>
@@ -222,6 +233,46 @@
      <!-- All JS plugin Triggers -->
     <script src="{{url('assets/js/main.js')}}"></script>
 
-    
+    <script type="text/javascript">
+      $(document).ready(function(){
+  $('.date').mask('00/00/0000');
+  $('.time').mask('00:00:00');
+  $('.date_time').mask('00/00/0000 00:00:00');
+  $('.cep').mask('00000-000');
+  $('.phone').mask('0000-0000');
+  $('.phone_with_ddd').mask('(00) 0000-0000');
+  $('.phone_us').mask('(000) 000-0000');
+  $('.mixed').mask('AAA 000-S0S');
+  $('.cpf').mask('000.000.000-00', {reverse: true});
+  $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+  $('.money').mask('000.000.000.000.000', {reverse: true});
+  $('.money2').mask("#.##0,00", {reverse: true});
+  $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
+    translation: {
+      'Z': {
+        pattern: /[0-9]/, optional: true
+      }
+    }
+  });
+  $('.ip_address').mask('099.099.099.099');
+  $('.percent').mask('##0,00%', {reverse: true});
+  $('.clear-if-not-match').mask("00/00/0000", {clearIfNotMatch: true});
+  $('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
+  $('.fallback').mask("00r00r0000", {
+      translation: {
+        'r': {
+          pattern: /[\/]/,
+          fallback: '/'
+        },
+        placeholder: "__/__/____"
+      }
+    });
+  $('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
+
+  $('.money').change(function() {
+    $('.aslinya').val($(this).cleanVal());
+});
+});
+    </script>
   </body>
 </html>

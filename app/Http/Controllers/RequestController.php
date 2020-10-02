@@ -16,7 +16,7 @@ class RequestController extends Controller
     {
         //
 
-        $requests = Permohonan::all();
+        $requests = Permohonan::Orderby('created_at','desc')->get();
         return    
         view('pages.daftarpengajuan',[ 'requests' => $requests]);
     }
@@ -70,14 +70,14 @@ class RequestController extends Controller
         $pengajuan->no_telepon = $request->no_telepon ;
         $pengajuan->jenis_bantuan = $request->jenis_bantuan ;
         $pengajuan->jumlah = $request->jumlah ;
-        $pengajuan->nilai_asumsi = $request->nilai_asumsi ;
+        $pengajuan->nilai_asumsi = $request->nilai_asumsi2 ;
         $pengajuan->tahun = $request->tahun ;
         $pengajuan->keterangan = $request->keterangan ;
 
         $pengajuan->save();
   
 
-        return   redirect()->back()->with('status', 'Berhasil Tambah Laporan !!');
+        return   redirect()->back()->with('status', 'Permohonan Berhasil Diajukan !!  Kami akan segera menghubungi anda kembali. Terima Kasih');
     
     }
 

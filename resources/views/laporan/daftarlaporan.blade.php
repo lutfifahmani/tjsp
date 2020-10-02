@@ -46,13 +46,15 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Tanggal</th>
+                                            <th>Judul</th>
                                             <th>Nama Perusahan</th>
                                             <th>Sektor</th>
-                                            <th>Sub Sektor</th>
                                             <th>Jenis Kontribusi</th>
                                             <th>Jumlah (Unit)</th>
-                                            <th>Tujuan/Penerima</th>
+                                            <th>Nominal</th>
+                                            <th>Tujuan/ Penerima</th>
                                             <th>Lokasi</th>
+                                            <th>LatLing</th>
                                             <th>Kelola</th>
                                         </tr>
                                     </thead>
@@ -60,14 +62,17 @@
                                         @foreach ($reports as $dp)
 
                                         <tr>
-                                            <td>{{$dp->tanggal}}</td>
+                                            <td style="width: 10%">{{$dp->tanggal->format('d-m-Y')}}</td>
+                                            <td>{{$dp->judul}}</td>
                                             <td>{{$dp->perusahaannya->nama_perusahaan}}</td>
+                                            
                                             <td>{{$dp->sektor}}</td>
-                                            <td>{{$dp->sub_sektor}}</td>
                                             <td>{{$dp->kontribusi}}</td>
                                             <td>{{$dp->jumlah}}</td>
+                                            <td>@currency($dp->nominal)</td>
                                             <td>{{$dp->tujuan}}</td>
                                             <td>{{$dp->lokasi}}</td>
+                                            <td >{{Str::limit($dp->latling,10)}}</td>
                                             <td style="width:12%"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal{{$dp->id}}"><i class="ti ti-pencil-alt"></i></button> <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapus{{$dp->id}}"><i class="ti ti-trash"></i></button></td>
                                         </tr>
 
@@ -100,24 +105,23 @@
 
                             <!-- This container will become the editable. -->
             <form method="POST" action="/update-laporan/{{$dpm->id}}" enctype="multipart/form-data">
-                 @method('PUT')
+                 @method('POST')
                     @csrf
 
                   <label for="tanggal">Tanggal Kegiatan</label>
-                    <input id="tanggal" type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" value="{{$dpm->tanggal}}">
+                    <input id="{{$dpm->id}}tanggal" type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" value="{{$dpm->tanggal->format('Y-m-d')}}">
                     @error('tanggal')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
-                 <label for="sektor">Sektor</label>
-                    <select name="sektor" class="form-control">
-                       <option value="Musrenbang">Musrenbang</option>
-                        <option value="Permohonan Masyarakat">Permohonan Masyarakat</option>
-                        <option value="Program Perusahaan">Program Perusahaan</option>
-                    </select>
+                <label for="judul">Judul</label>
+                    <input id="{{$dpm->id}}judul" type="text" name="judul" class="form-control @error('judul') is-invalid @enderror" value="{{$dpm->judul}}">
+                    @error('judul')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
 
-                 <label for="sub_sektor">Sub Sektor</label>
-                    <select name="sub_sektor" class="form-control">                      
+                 <label for="sub_sektor">Sektor</label>
+                    <select name="sektor" class="form-control">                      
                         <option value="Ekonomi">Ekonomi</option>
                         <option value="Sosial Budaya">Sosial Budaya</option>
                         <option value="Prasarana Wilayah">Prasarana Wilayah</option>
@@ -126,36 +130,56 @@
                 <label for="id_perusahaan">Perusahaan</label>
                     <select name="id_perusahaan" class="form-control">
                         @foreach ($perusahaan as $pr)
+                        @if ($pr->id==$dpm->id_perusahaan)
+                        <option value="{{$pr->id}}" selected>{{$pr->nama_perusahaan}}</option>
+                        @else
                         <option value="{{$pr->id}}">{{$pr->nama_perusahaan}}</option>
+                        @endif
                         @endforeach
                     </select>
 
+
+
                     <label for="kontribusi">Kontribusi</label>
-                    <input id="kontribusi" type="text" name="kontribusi" class="form-control @error('kontribusi') is-invalid @enderror" value="{{$dpm->kontribusi}}">
+                    <input id="{{$dpm->id}}kontribusi" type="text" name="kontribusi" class="form-control @error('kontribusi') is-invalid @enderror" value="{{$dpm->kontribusi}}">
                     @error('kontribusi')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <label for="jumlah">Jumlah Kontribusi</label>
-                    <input id="jumlah" type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" value="{{$dpm->jumlah}}">
+                    <input id="{{$dpm->id}}jumlah" type="text" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" value="{{$dpm->jumlah}}">
                     @error('jumlah')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <label for="nominal">nominal</label>
+                    <input id="{{$dpm->id}}nominal" type="text" name="nominalx" class="form-control @error('nominal') is-invalid @enderror money" value="{{$dpm->nominal}}" autocomplete="off">
+                    @error('nominal')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <input type="hidden" name="nominal" class="form-control @error('nominal') is-invalid @enderror aslinya" value="{{$dpm->nominal}}">
+
                     <label for="tujuan">Tujuan atau Penerima</label>
-                    <input id="tujuan" type="text" name="tujuan" class="form-control @error('tujuan') is-invalid @enderror" value="{{$dpm->tujuan}}">
+                    <input id="{{$dpm->id}}tujuan" type="text" name="tujuan" class="form-control @error('tujuan') is-invalid @enderror" value="{{$dpm->tujuan}}">
                     @error('tujuan')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <label for="lokasi">Lokasi Kegiatan</label>
-                    <input id="lokasi" type="text" name="lokasi" class="form-control @error('lokasi') is-invalid @enderror" value="{{$dpm->lokasi}}">
+                    <input id="{{$dpm->id}}lokasi" type="text" name="lokasi" class="form-control @error('lokasi') is-invalid @enderror" value="{{$dpm->lokasi}}">
                     @error('lokasi')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <label for="latling">Latling</label>
+                    <input id="{{$dpm->id}}latling" type="text" name="latling" class="form-control @error('latling') is-invalid @enderror" value="{{$dpm->latling}}">
+                    @error('latling')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                     <label for="file">Dokumentasi</label>
-                    <input id="file" type="file" name="gallery[]" class="form-control-file @error('gallery') is-invalid @enderror" multiple="true">
+                    <input id="{{$dpm->id}}file" type="file" name="gallery[]" class="form-control-file @error('gallery') is-invalid @enderror" multiple="true">
                     @error('gallery')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -213,6 +237,4 @@
 });
 } );
 </script>
-
-@toastr_render
     @endsection

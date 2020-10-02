@@ -25,8 +25,8 @@ class ReportController extends Controller
     {
         //
          //
-        $reports = Report::with('perusahaannya')->get();
-        $perusahaan = Perusahaan::all();
+        $reports = Report::with('perusahaannya')->Orderby('tanggal','desc')->get();
+        $perusahaan = Perusahaan::Orderby('updated_at','desc')->get();
         return    
         view('laporan.daftarlaporan',[ 'reports' => $reports,'perusahaan'=>$perusahaan]);
     }
@@ -60,7 +60,6 @@ class ReportController extends Controller
             'tanggal' => 'required',
             'id_perusahaan' => 'required',
             'sektor' => 'required',
-            'sub_sektor' => 'required',
             'kontribusi' => 'required',
             'jumlah' => 'required',
             'tujuan' => 'required',
@@ -73,12 +72,15 @@ class ReportController extends Controller
         $report = new Report;
 
         $report->tanggal = $request->tanggal;
+        $report->judul = $request->judul;
         $report->id_perusahaan = $request->id_perusahaan;
         $report->sektor = $request->sektor;
         $report->sub_sektor = $request->sub_sektor;
         $report->kontribusi = $request->kontribusi;
         $report->jumlah = $request->jumlah;
+        $report->nominal = $request->nominal;
         $report->tujuan = $request->tujuan;
+        $report->latling = $request->latling;
         $report->lokasi = $request->lokasi;
 
         $report->save();
@@ -139,7 +141,6 @@ class ReportController extends Controller
             'tanggal' => 'required',
             'id_perusahaan' => 'required',
             'sektor' => 'required',
-            'sub_sektor' => 'required',
             'kontribusi' => 'required',
             'jumlah' => 'required',
             'tujuan' => 'required',
@@ -150,13 +151,15 @@ class ReportController extends Controller
      $report = Report::find($id);
 
         $report->tanggal = $request->tanggal;
+        $report->judul = $request->judul;
         $report->id_perusahaan = $request->id_perusahaan;
         $report->sektor = $request->sektor;
-        $report->sub_sektor = $request->sub_sektor;
         $report->kontribusi = $request->kontribusi;
         $report->jumlah = $request->jumlah;
+        $report->nominal = $request->nominal;
         $report->tujuan = $request->tujuan;
         $report->lokasi = $request->lokasi;
+        $report->latling = $request->latling;
 
         $report->save();
   
@@ -196,6 +199,6 @@ class ReportController extends Controller
         $hapuslap->delete();
 
 
-        return redirect('list-laporan')->with('status', 'Profile updated!');
+        return redirect('list-laporan')->with('status', 'Laporan Telah dihapus!');
     }
 }

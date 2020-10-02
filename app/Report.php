@@ -8,6 +8,9 @@ class Report extends Model
 {
     //
 
+protected $dates = [
+        'tanggal',
+    ];
 
 //restricts columns from modifying
   protected $guarded = [];

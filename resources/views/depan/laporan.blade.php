@@ -4,7 +4,7 @@
     <section class="section">
     <div class="container">
     <h1 class="section-title wow fadeInUpQuick">
-    Laporan CSR
+    Laporan TJSP
     </h1>
     <p class="section-subcontent" style="text-transform: capitalize;"><b></b></p>
 
@@ -31,9 +31,9 @@
                                         <tr>
                                             <th>Tanggal</th>
                                             <th>Nama Perusahan</th>
-                                            <th>Sektor</th>
-                                            <th>Sub Sektor</th>
+                                            <th>Program</th>
                                             <th>Jenis Kontribusi</th>
+                                            <th>Jumlah</th>
                                             <th>Detail</th>
                                         </tr>
                                     </thead>
@@ -41,11 +41,11 @@
                                         @foreach ($reports as $dp)
 
                                         <tr>
-                                            <td>{{$dp->tanggal}}</td>
+                                            <td>{{$dp->tanggal->format('d/m/Y')}}</td>
                                             <td>{{$dp->perusahaannya->nama_perusahaan}}</td>
                                             <td>{{$dp->sektor}}</td>
-                                            <td>{{$dp->sub_sektor}}</td>
                                             <td>{{$dp->kontribusi}}</td>
+                                            <td>{{$dp->jumlah}}</td>
                                             <td><a href="{{url('/laporan/'.$dp->id)}}">Detail</a></td>
                                             
                                         </tr>

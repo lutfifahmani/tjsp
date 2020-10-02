@@ -11,12 +11,12 @@ Halaman Berita
 <div class="row">
 
  @foreach ($posts as $berita)
-<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="padding-bottom: 10px">
 
 <div class="blog-item-wrapper wow fadeIn" data-wow-delay="0.3s">
 <div class="blog-item-img">
 <a href="{{url('/berita/'.$berita->url)}}">
-<img src="{{asset('images/'.$berita->image)}}" alt="">
+<img src="{{asset('images/'.$berita->image)}}" alt="" style="height: 200px;object-fit: cover;">
 </a>
 </div>
 <div class="blog-item-text">

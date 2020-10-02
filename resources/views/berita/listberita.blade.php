@@ -111,15 +111,34 @@
                     @error('sub_judul')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-         <div class="form-group">
-                    <label for="image">Ganti Gambar Header</label>
+                    <br>
+         <div class="form-row">
+                    <div class="col-md-4">
+                      <label for="image">Ganti Gambar Header</label>
                     <input id="image" type="file" name="image" class="form-control-file @error('image') is-invalid @enderror">
 
                     @error('image')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-
-                </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="gridCheck" name="slide" value="slider" @if($dpm->slide) checked @endif>
+                          <label class="form-check-label" for="gridCheck">
+                            Jadikan Slide
+                          </label>
+                        </div>
+                    </div>
+                     <div class="col-md-3">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="gridCheck" name="state" value="hidden" @if($dpm->state) checked @endif>
+                          <label class="form-check-label" for="gridCheck">
+                            Sembunyikan dari Berita
+                          </label>
+                        </div>
+                    </div>
+                  </div>
+                  <br>
                 <div class="form-group">
                 <img src="{{asset('/images/'.$dpm->image)}}" class="img-fluid" width="150px">
                     </div>

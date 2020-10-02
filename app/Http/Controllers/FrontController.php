@@ -18,8 +18,8 @@ class FrontController extends Controller
     {
         //
          //
-        $reports = Report::with('perusahaannya')->get();
-        $perusahaan = Perusahaan::all();
+        $reports = Report::with('perusahaannya')->Orderby('tanggal','desc')->get();
+        $perusahaan = Perusahaan::Orderby('updated_at','desc')->get();
         return    
         view('depan.laporan',[ 'reports' => $reports,'perusahaan'=>$perusahaan]);
     }
@@ -28,14 +28,16 @@ class FrontController extends Controller
     {
         //
          //
-        $reports = Report::with('perusahaannya')->get();
-        $perusahaan = Perusahaan::all();
+        $reports = Report::with('perusahaannya')->Orderby('tanggal','desc')->get();
+        $perusahaan = Perusahaan::Orderby('updated_at','desc')->get();
         $galleries = Gallery::orderBy('created_at', 'desc')->paginate(12);
-        $posts = Berita::orderBy('created_at', 'desc')->limit(4)->get();
-        $posts2 = $posts->shift();
+        $slideposts = Berita::where('slide','slider')->orderBy('created_at', 'desc')->limit(4)->get();
+        $slideposts2 = $slideposts->shift();
+         $posts = Berita::where('state',null)->orderBy('created_at', 'desc')->limit(3)->get();
+        $requests = Permohonan::all();
 
         return    
-        view('welcome',[ 'reports' => $reports,'perusahaan'=>$perusahaan,'posts'=>$posts,'galleries'=>$galleries,'posts2'=>$posts2]);
+        view('welcome',[ 'reports' => $reports,'perusahaan'=>$perusahaan,'slideposts'=>$slideposts,'slideposts2'=>$slideposts2,'galleries'=>$galleries,'posts'=>$posts,'requests'=>$requests]);
     }
 
     public function perusahaandepan()
@@ -43,7 +45,7 @@ class FrontController extends Controller
         //
          //
         $reports = Report::with('perusahaannya')->orderBy('created_at', 'desc')->get();
-        $perusahaan = Perusahaan::all();
+        $perusahaan = Perusahaan::Orderby('updated_at','desc')->get();
         return    
         view('depan.daftarperusahaan',[ 'reports' => $reports,'perusahaan'=>$perusahaan]);
     }
@@ -57,20 +59,20 @@ class FrontController extends Controller
     }
 
 
-    public function laporandepan($sektor,$sub_sektor)
+    public function laporandepan($program,$pemohon)
     {
         //
 
-        $newsektor = str_replace('-', ' ', $sektor);
-        $newsubsektor = str_replace('-', ' ', $sub_sektor);
+        $newprogram = str_replace('-', ' ', $program);
+        $newpemohon = str_replace('-', ' ', $pemohon);
          //
         $requests = Permohonan::where([
-                    ['program', '=', $newsubsektor],
-                    ['jenis_permohonan', '=', $newsektor]])
+                    ['program', '=', $newprogram],
+                    ['jenis_permohonan', '=', $newpemohon]])
                     ->orderBy('created_at', 'desc')->get();
         $perusahaan = Perusahaan::all();
         return    
-        view('depan.pengajuansektor',[ 'requests' => $requests,'perusahaan'=>$perusahaan,'sektor'=>$newsubsektor,'sub_sektor'=>$newsektor]);
+        view('depan.pengajuansektor',[ 'requests' => $requests,'perusahaan'=>$perusahaan,'program'=>$newprogram,'pemohon'=>$newpemohon]);
     }
 
     public function galeridepan()
@@ -86,7 +88,7 @@ class FrontController extends Controller
     {
         //
          //
-        $posts = Berita::orderBy('created_at', 'desc')->paginate(9);
+        $posts = Berita::where('state',null)->orderBy('created_at', 'desc')->paginate(9);
         return    
         view('depan.mainberita',[ 'posts' => $posts]);
     }

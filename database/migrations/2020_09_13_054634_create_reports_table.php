@@ -16,16 +16,19 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal');
+            $table->string('judul')->nullable();
             $table->unsignedBigInteger('id_perusahaan');
             $table->foreign('id_perusahaan')
                 ->references('id')->on('companies')
                 ->onDelete('cascade');
             $table->string('sektor');
-            $table->string('sub_sektor');
+            $table->string('sub_sektor')->nullable();
             $table->string('kontribusi');
             $table->string('jumlah');
+            $table->string('nominal');
             $table->string('tujuan');
             $table->string('lokasi');
+            $table->string('latling')->nullable();
             $table->timestamps();
         });
     }

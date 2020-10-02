@@ -10,8 +10,7 @@ Galeri
 
     @foreach ($galleries as $gal)
     <div class="col-lg-3 col-sm-3 col-xs-12 wow fadeInUpQuick animated " data-wow-delay=".2s" data-animation="fadeIn" data-animation-delay="01" style="visibility: visible;-webkit-animation-delay: .2s; -moz-animation-delay: .2s; animation-delay: .2s; padding: 10px;">
-        <a href="{{asset('images/'.$gal->url)}}" data-rel="lightcase:koleksi"><img src="{{asset('images/'.$gal->url)}}" class="img-fluid" style="height: 250px" alt="CSR Program {{$gal->report->sektor}} , Sektor {{$gal->report->sub_sektor}}, Oleh {{$gal->report->perusahaannya->nama_perusahaan}}"></a>
-
+        <a href="{{asset('images/'.$gal->url)}}" data-rel="lightcase:koleksi"><img src="{{asset('images/'.$gal->url)}}" class="img-fluid" style="object-fit: cover;height: 200px;margin: 15px" alt="CSR Program {{$gal->report->sektor}} , Sektor {{$gal->report->sub_sektor}}, Oleh {{$gal->report->perusahaannya->nama_perusahaan}}"></a>
     </div>
     @endforeach
 

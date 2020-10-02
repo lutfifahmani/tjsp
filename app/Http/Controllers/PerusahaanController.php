@@ -22,7 +22,7 @@ class PerusahaanController extends Controller
     public function index()
     {
         //
-        $perusahaan = Perusahaan::all();
+        $perusahaan = Perusahaan::Orderby('updated_at','desc')->get();
         return view('perusahaan.listperusahaan',[ 'perusahaan' => $perusahaan]);
     }
 
@@ -63,6 +63,7 @@ class PerusahaanController extends Controller
         $perusahaan->nama_perusahaan = $request->nama_perusahaan;
         $perusahaan->avatar = $path;
         $perusahaan->alamat_perusahaan = $request->alamat_perusahaan;
+        $perusahaan->npwp = $request->npwp;
         $perusahaan->email_perusahaan = $request->email_perusahaan;
         $perusahaan->kontak_perusahaan = $request->kontak_perusahaan;
         $perusahaan->status_kontribusi = "";
@@ -110,7 +111,6 @@ class PerusahaanController extends Controller
 
          $request->validate([
             'nama_perusahaan' => 'required',
-            'avatar' => 'required|file|max:512',
             'alamat_perusahaan' => 'required',
             'email_perusahaan' => 'required|email',
             'kontak_perusahaan' => 'required'
@@ -122,6 +122,7 @@ class PerusahaanController extends Controller
 
         $ubah->nama_perusahaan= $request->nama_perusahaan;
         $ubah->alamat_perusahaan = $request->alamat_perusahaan;
+        $ubah->npwp = $request->npwp;
         $ubah->email_perusahaan = $request->email_perusahaan;
         $ubah->kontak_perusahaan = $request->kontak_perusahaan;
         $ubah->status_kontribusi = "";
